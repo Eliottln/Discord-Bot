@@ -9,6 +9,11 @@
   "author": "EliottLn",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.6.0"
+    "@discordjs/builders": "^1.3.0",
+    "@discordjs/rest": "^1.3.0",
+    "discord-api-types": "^0.37.14",
+    "discord.js": "^14.6.0",
+    "mongoose": "^6.6.5",
+    "node-schedule": "^2.1.0"
   }
 }
