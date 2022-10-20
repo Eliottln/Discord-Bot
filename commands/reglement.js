@@ -1,4 +1,5 @@
 const {ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, SlashCommandBuilder} = require("discord.js");
+const {PermissionFlagsBits} = require("discord-api-types/v10");
 
 const button = new ActionRowBuilder()
     .addComponents(
@@ -40,7 +41,8 @@ const embed = new EmbedBuilder()
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('reglement')
-        .setDescription('Affiche le règlement du serveur'),
+        .setDescription('Affiche le règlement du serveur.')
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     async execute(interaction) {
         await interaction.reply({embeds: [embed], components: [button]})
     },
