@@ -1,4 +1,4 @@
-const { ApplicationCommandOptionType, SlashCommandBuilder} = require('discord.js');
+const {SlashCommandBuilder} = require('discord.js');
 const {PermissionFlagsBits} = require("discord-api-types/v10");
 
 module.exports = {
@@ -18,7 +18,10 @@ module.exports = {
     async execute(interaction) {
         const amountToDelete = interaction.options.getInteger('nombre');
         if (amountToDelete < 1 || amountToDelete > 100) {
-            return await interaction.reply({content: 'Le nombre de messages doit être compris entre 1 et 100, réessaye !', ephemeral: true});
+            return await interaction.reply({
+                content: 'Le nombre de messages doit être compris entre 1 et 100, réessaye !',
+                ephemeral: true
+            });
         }
         const target = interaction.options.getUser('cible');
 
@@ -38,8 +41,7 @@ module.exports = {
             await interaction.channel.bulkDelete(filterTargetMessages, true).then(messages => {
                 interaction.reply(`${interaction.user} a supprimé ${messages.size} message(s) de ${target}.`)
             });
-        }
-        else {
+        } else {
             await interaction.channel.bulkDelete(amountToDelete, true).then(messages => {
                 interaction.reply(`${interaction.user} a supprimé ${messages.size} message(s) sur ce salon.`)
             });
