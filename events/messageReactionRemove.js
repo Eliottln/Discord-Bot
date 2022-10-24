@@ -1,7 +1,10 @@
+const {Events} = require("discord.js");
+const {rolesChannelId} = require("../config.json");
+
 module.exports = {
-    name: 'messageReactionRemove',
+    name: Events.MessageReactionRemove,
     once: false,
-    async execute(client, messageReaction, user) {
+    async execute(messageReaction, user) {
         const message = messageReaction.message;
         const emojiName = messageReaction.emoji.name;
         const member = message.guild.members.cache.get(user.id);
@@ -16,7 +19,7 @@ module.exports = {
             }
         }
 
-        if (message.channelId === '962616951459426334') {
+        if (message.channelId === rolesChannelId) {
             switch (emojiName) {
                 // age 👶 🧒 🧑 🧓 💀
                 case '👶':
