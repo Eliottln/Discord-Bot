@@ -28,27 +28,22 @@ module.exports = client => {
     }
 
     client.setBirthday = async (guild, user, day, month, year) => {
-        let query = client.getBirthday(guild, user);
-        query.then(doc => {
-            if (doc == null) {
-                const createBDay = new Birthday({
-                    user_id: user.id,
-                    username: user.username,
-                    day: day,
-                    month: month,
-                    year: year,
-                    guild_id: guild.id,
-                });
-                return createBDay.save().then(() => console.log('Date de naissance enregistrée'));
+        return Birthday.findOneAndUpdate(
+            {
+                guild_id: guild.id,
+                user_id: user.id,
+            },
+            {
+                username: user.username,
+                day: day,
+                month: month,
+                year: year,
+            },
+            {
+                upsert: true,
+                new: true,
             }
-            else {
-                return doc.updateOne({
-                    day: day,
-                    month: month,
-                    year: year,
-                });
-            }
-        })
+        );
     }
 
 
