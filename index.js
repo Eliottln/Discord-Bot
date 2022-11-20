@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Partials, GatewayIntentBits, Collection} = require('discord.js');
-const { token } = require('./config.json');
+const { token, databaseUri } = require('./config.json');
+const mongoose = require("mongoose");
 
 const client = new Client({
     intents: [
@@ -43,4 +44,19 @@ for (const file of eventFiles) {
     }
 }
 
+require('./utils/Functions')(client);
+
+process.on('exit', code => { console.error(`Le processus s'est arrêté avec le code: ${code}`)})
+process.on('uncaughtException', (err, origin) => { console.error(`uncaughtException: ${err}`, `- Origin: ${origin}`)})
+process.on('unhandledRejection', (reason, promise) => { console.error(`unhandledRejection: ${reason}\n`, promise)})
+process.on('warning', (...args) => { console.warn(...args)})
+
+mongoose.connect(databaseUri, {
+    autoIndex: false,
+    maxPoolSize: 10,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+    family: 4
+}).then(() => console.log('Client connecté à la BDD'))
+    .catch(err => console.log(err));
 client.login(token);

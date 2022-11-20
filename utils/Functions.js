@@ -2,25 +2,19 @@ const { Guild, Birthday, Level, Warning} = require('../models');
 
 module.exports = client => {
     // Guild
-    client.getGuild = async guild => {
-        return Guild.findOne({guild_id: guild.id});
-    };
-
-    client.createGuild = async guild => {
-        const createGuild = new Guild({
-            guild_id: guild.id,
-            name: guild.name,
-        });
-        createGuild.save().then(g => console.log(`Nouveau serveur (${g.id})`));
-    }
-
-    client.updateGuild = async (guild, settings) => {
-        let guildData = await client.getGuild(guild);
-        if (typeof guildData != 'object') guildData = {};
-        for (const key in settings){
-            if (guildData[key] !== settings[key]) guildData[key] = settings[key];
-        }
-        return guildData.updateOne(settings);
+    client.updateGuild = async guild => {
+        return Guild.findOneAndUpdate(
+            {
+                guild_id: guild.id,
+            },
+            {
+                name: guild.name
+            },
+            {
+                upsert: true,
+                new: true,
+            }
+        );
     }
 
 
