@@ -28,7 +28,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setColor('#24e80b')
                     .setTitle('Nouvel(le) arrivant(e) !')
-                    .setDescription(`${member} nous a rejoint !`)
+                    .setDescription(`${member.user} nous a rejoint !`)
                     .setThumbnail(`${member.user.avatarURL()}`)
                     .addFields([{name: 'Invité(e) par:', value: inviter}])
                     .setTimestamp();

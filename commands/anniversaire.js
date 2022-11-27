@@ -42,6 +42,10 @@ module.exports = {
             let day = interaction.options.getInteger('jour');
             let month = interaction.options.getInteger('mois');
             let year = interaction.options.getInteger('année');
+            if (year < new Date().getFullYear() - 100 || year > new Date().getFullYear()) interaction.reply({
+                content: 'Renseigne une année correcte.',
+                ephemeral: true
+            });
             switch (month) {
                 case 1:
                 case 3:
