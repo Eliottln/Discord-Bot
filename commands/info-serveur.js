@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('info-serveur')
         .setDescription('Affiche des informations concernant le serveur.')
-        .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages && PermissionFlagsBits.UseApplicationCommands),
+        .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages + PermissionFlagsBits.UseApplicationCommands),
     execute(interaction) {
         let creationDate = parseInt(interaction.guild.createdTimestamp) / 1000;
         creationDate = Math.floor(creationDate);

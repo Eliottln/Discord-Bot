@@ -5,11 +5,11 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('sondage')
         .setDescription('Poste ton propre sondage.')
-        .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages && PermissionFlagsBits.UseApplicationCommands)
+        .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages + PermissionFlagsBits.UseApplicationCommands)
         .addSubcommand(subcommand =>
             subcommand
                 .setName('simple')
-                .setDescription('Un sondage avec une question et 3 réponses possibles')
+                .setDescription('Sondage avec ta question')
                 .addStringOption(option =>
                     option
                         .setName('question')
@@ -18,7 +18,7 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand
                 .setName('personnalise')
-                .setDescription('Un sondage avec une question et jusqu\'à 4 réponses possibles')
+                .setDescription('Sondage avec ta question et jusqu\'à 4 réponses possibles')
                 .addStringOption(option =>
                     option
                         .setName('question')

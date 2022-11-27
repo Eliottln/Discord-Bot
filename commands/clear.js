@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('clear')
         .setDescription('Efface un certain nombre de messages.')
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages && PermissionFlagsBits.UseApplicationCommands)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages + PermissionFlagsBits.UseApplicationCommands)
         .addIntegerOption(option =>
             option
                 .setName('nombre')

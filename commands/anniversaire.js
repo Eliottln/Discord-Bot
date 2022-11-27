@@ -7,7 +7,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('anniversaire')
         .setDescription('Configure ta date de naissance.')
-        .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages && PermissionFlagsBits.UseApplicationCommands)
+        .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages + PermissionFlagsBits.UseApplicationCommands)
         .addIntegerOption(option =>
             option
                 .setName('jour')

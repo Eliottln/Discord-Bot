@@ -6,7 +6,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('info-membre')
         .setDescription('Affiche des informations concernant un membre.')
-        .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages && PermissionFlagsBits.UseApplicationCommands)
+        .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages + PermissionFlagsBits.UseApplicationCommands)
         .addUserOption(option =>
             option
                 .setName('cible')
