@@ -14,7 +14,7 @@ module.exports = {
 
                 guildInvites.each(invite => {
                     if (invite.uses !== client.invites[invite.code]) {
-                        inviter = `<@!${invite.inviter.id}>`;
+                        inviter = `${invite.inviter}`;
 
                         client.invites = []
                         guild.invites.fetch().then(guildInvites => {

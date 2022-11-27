@@ -1,6 +1,7 @@
 const {EmbedBuilder, SlashCommandBuilder} = require("discord.js");
 const {PermissionFlagsBits} = require("discord-api-types/v10");
 const {guildId} = require("../config.json")
+const {parseTimestamp} = require("../utils/dateUtils");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,8 +17,7 @@ module.exports = {
         const user = interaction.options.getUser('cible') ?? interaction.user;
         const member = interaction.guild.members.cache.get(user.id)
 
-        let joinedTimestamp = parseInt(member.joinedTimestamp) / 1000;
-        joinedTimestamp = Math.floor(joinedTimestamp);
+        let joinedTimestamp = parseTimestamp(member.joinedTimestamp)
 
         if (!user.bot && interaction.guildId === guildId) {
             client.getLevel(interaction.guild, user).then(async levelData => {
@@ -53,7 +53,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor('#0099ff')
                 .setTitle(`Infos de ${user.username}`)
-                .setDescription(`<@!${user.id}>`)
+                .setDescription(`${user}`)
                 .setThumbnail(`${user.avatarURL()}`)
                 .addFields([
                     {name: 'Tag:', value: `${user.tag}`},

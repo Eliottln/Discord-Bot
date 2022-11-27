@@ -1,5 +1,6 @@
 const {EmbedBuilder, SlashCommandBuilder} = require("discord.js");
 const {PermissionFlagsBits} = require("discord-api-types/v10");
+const {parseTimestamp} = require("../utils/dateUtils");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -7,8 +8,7 @@ module.exports = {
         .setDescription('Affiche des informations concernant le serveur.')
         .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages + PermissionFlagsBits.UseApplicationCommands),
     execute(interaction) {
-        let creationDate = parseInt(interaction.guild.createdTimestamp) / 1000;
-        creationDate = Math.floor(creationDate);
+        let creationDate = parseTimestamp(interaction.guild.createdTimestamp)
         const embed = new EmbedBuilder()
             .setColor('#0099ff')
             .setTitle(`${interaction.guild.name}`)
