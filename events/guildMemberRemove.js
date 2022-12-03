@@ -8,8 +8,8 @@ module.exports = {
         if (member.guild.id === guildId) {
             const embed = new EmbedBuilder()
                 .setColor('#ff0000')
-                .setTitle(`Oh... ${member.name} nous a quitté :(`)
-                .setDescription('Tu vas nous manquer ! (Ou pas ?? 🤔')
+                .setTitle(`Oh... ${member.displayName} nous a quitté :(`)
+                .setDescription('Tu vas nous manquer ! (Ou pas ?? 🤔)')
                 .setThumbnail(`${member.user.avatarURL()}`)
                 .setTimestamp();
 

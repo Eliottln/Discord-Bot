@@ -18,7 +18,7 @@ module.exports = {
                 .setRequired(true)),
     async execute(interaction) {
         const user = interaction.options.getUser('cible');
-        if (user.bot) interaction.reply({content: 'Le bot ne peut pas avoir d\'avertissements', ephemeral: true})
+        if (user.bot) return interaction.reply({content: 'Un bot ne peut pas avoir d\'avertissements', ephemeral: true})
         const client = interaction.client
         const message = interaction.options.getString('motif');
 

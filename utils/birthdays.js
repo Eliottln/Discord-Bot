@@ -1,5 +1,6 @@
 const schedule = require("node-schedule");
 const {EmbedBuilder} = require("discord.js");
+const {birthdayChannelId} = require("../config.json")
 
 module.exports = {
     scheduleBday(day, month, year, username, client) {
@@ -21,7 +22,7 @@ module.exports = {
                 .setDescription('Ça fait ' + age + ' ans que tu existes 🥳')
                 .addFields([{name: 'Né le:', value: day+'/'+month+'/'+year}]);
 
-            const channel = client.channels.cache.get('956271255970013310');
+            const channel = client.channels.cache.get(birthdayChannelId);
             if (!channel) return console.warn("birthday: Could not find channel");
             channel.send({ embeds: [embed] });
         });
