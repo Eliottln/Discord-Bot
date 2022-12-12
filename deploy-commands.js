@@ -11,7 +11,6 @@ for (const file of commandFiles) {
         case 'clear.js':
         case 'info-membre.js':
         case 'info-serveur.js':
-        case 'ping.js':
         case 'sondage.js':
             const globalCommand = require(`./commands/${file}`);
             globalCommands.push(globalCommand.data.toJSON());

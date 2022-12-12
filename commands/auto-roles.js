@@ -3,7 +3,7 @@ const {PermissionFlagsBits} = require("discord-api-types/v10");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('auto-role')
+        .setName('auto-roles')
         .setDescription('Génère les embeds pour les auto-roles.')
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption(option =>
